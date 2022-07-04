@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import TabContainer from "./pages/TabContainer";
+import Auth from "./components/Auth";
+import { GlobalStyle } from "./style/style";
+import AccesRoute from "./pages/AccessPrivate";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Auth" element={<Auth />} />
+          <Route path="/ToDo" element={<TabContainer />} />
+          <Route path="/PrivateRoute" element={<PrivateRoute />}>
+            <Route path="" element={<AccesRoute />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
